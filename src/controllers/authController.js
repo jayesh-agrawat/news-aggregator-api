@@ -1,9 +1,9 @@
-var jwt = require("jsonwebtoken");
-var bcrypt = require("bcrypt");
-var cache = require("../data/cache");
-var userSchema = require("../models/user");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const cache = require("../data/cache");
+const userSchema = require("../models/user");
 
-var signup = (req, res) => {
+const signup = (req, res) => {
   const userData = {
     fullName: req.body.fullName,
     role: req.body.email,
@@ -24,19 +24,19 @@ var signup = (req, res) => {
   }
 };
 
-var signin = (req, res) => {
+const signin = (req, res) => {
   let emailPassed = req.body.email;
   let passwordPassed = req.body.password;
 
   if (cache.has(emailPassed)) {
     let user = cache.get(emailPassed);
-    var passwordIsValid = bcrypt.compareSync(passwordPassed, user.password);
+    let passwordIsValid = bcrypt.compareSync(passwordPassed, user.password);
     if (!passwordIsValid) {
       return res.status(401).send({
         message: "Invalid Password",
       });
     }
-    var token = jwt.sign(
+    const token = jwt.sign(
       {
         id: user.email,
       },

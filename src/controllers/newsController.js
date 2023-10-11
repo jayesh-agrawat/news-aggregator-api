@@ -6,7 +6,7 @@ const apiURL = env.apiURL;
 const apiKey = env.NEWS_API_KEY;
 
 // Fetch news based on user preferences
-var fetchNews = async (req, res) => {
+const fetchNews = async (req, res) => {
   try {
     let user = req.user;
     let preferences = [];

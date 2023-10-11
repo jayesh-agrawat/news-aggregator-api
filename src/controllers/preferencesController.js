@@ -11,7 +11,6 @@ const updatePreferences = (req, res) => {
   const user = req.user;
   const updatedPreferences = req.body;
   user.preferences = updatedPreferences;
-
   res.status(200).json({ message: "User preferences updated successfully" });
 };
 

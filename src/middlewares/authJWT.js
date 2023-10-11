@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const UserSchema = require("../models/user");
-var cache = require("../data/cache");
+const cache = require("../data/cache");
 
 const verifyToken = (req, res, next) => {
   if (req.headers && req.headers.authorization) {
