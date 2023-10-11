@@ -40,7 +40,7 @@ const signin = (req, res) => {
       {
         id: user.email,
       },
-      process.env.API_SECRET,
+      process.env.JWT_SECRET,
       {
         expiresIn: 86400,
       }
