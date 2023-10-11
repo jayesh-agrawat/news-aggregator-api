@@ -38,7 +38,7 @@ var signin = (req, res) => {
     }
     var token = jwt.sign(
       {
-        id: user.id,
+        id: user.email,
       },
       process.env.API_SECRET,
       {

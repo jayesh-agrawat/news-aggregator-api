@@ -1,4 +1,7 @@
-const { Router } = require("express");
+const Router = require("express");
+const getNews = require("../controllers/newsController");
 const router = Router();
-const authJWT = require("../middleware/authJWT");
-const { getNews } = require("../controllers/newsController");
+
+router.get("/", getNews);
+
+module.exports = router;

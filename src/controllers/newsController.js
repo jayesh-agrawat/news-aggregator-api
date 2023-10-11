@@ -1,24 +1,21 @@
 const axios = require("axios");
-const apiKey = process.env.NEWS_API_KEY;
+
 var cache = require("../data/cache");
+const { configDotenv } = require("dotenv");
 
+const env = configDotenv().parsed;
+const apiKey = env.NEWS_API_KEY;
 // Fetch news based on user preferences
-exports.fetchNews = async (req, res) => {
+var fetchNews = async (req, res) => {
   try {
-    // Get user preferences, you can replace this with your preference retrieval logic
-    const userId = req.userData.userId;
-    const preferences = userPreferences.find((pref) => pref.userId === userId);
-
-    if (!preferences) {
-      return res.status(404).json({ message: "User preferences not found" });
-    }
-
-    const { categories } = preferences.preferences;
-
+    let preferences = [];
+    // if (!!req.user.preferences.length) {
+    //   preferences = req.user.preferences;
+    // }
     // Fetch news articles from an external API like NewsAPI
-    const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&sources=${sources.join(
+    const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=in&category=${preferences.join(
       ","
-    )}&category=${categories.join(",")}`;
+    )}`;
     const response = await axios.get(apiUrl);
 
     res.status(200).json(response.data);
@@ -27,3 +24,5 @@ exports.fetchNews = async (req, res) => {
     res.status(500).json({ message: "Failed to fetch news" });
   }
 };
+
+module.exports = fetchNews;

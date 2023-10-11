@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/user");
+const UserSchema = require("../models/user");
+var cache = require("../data/cache");
 
 const verifyToken = (req, res, next) => {
   if (req.headers && req.headers.authorization) {
@@ -12,19 +13,15 @@ const verifyToken = (req, res, next) => {
           req.message = "Header Verfication Failed";
           next();
         } else {
-          User.findOne({
-            id: decode.id,
-          })
-            .then((user) => {
-              req.user = user;
-              req.message = "User Found Successfully";
-              next();
-            })
-            .catch((err) => {
-              req.user = undefined;
-              req.message = "Some Error while finding the user";
-              next();
-            });
+          if (cache.has(decode.id)) {
+            req.user = cache.get(decode.id);
+            req.message = "User Found Successfully";
+            next();
+          } else {
+            req.user = undefined;
+            req.message = "Some Error while finding the user";
+            next();
+          }
         }
       }
     );
