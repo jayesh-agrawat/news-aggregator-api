@@ -114,4 +114,8 @@ To get started with this project, follow the steps below:
 - **Response**: JSON array of news articles.
 
 
+APIs using `POSTMAN`:
+
+- Use this POSTMAN API [collection](./collections/News%20Aggregator%20API.postman_collection.json)
+
 Feel free to modify this `README.md` to suit your project's specific requirements and structure. Good luck with your News Aggregator API project!
