@@ -5,10 +5,10 @@ const verifyToken = require("../middlewares/authJWT");
 const router = Router();
 
 router.use((req, res, next) => {
-  console.log("Time: ", Date.now());
+  console.log("Time: ", new Date());
   next();
 });
-// router.use(verifyToken);
+router.use(verifyToken);
 
 router.use("/news", newsRoute);
 router.use("/preferences", preferencesRoute);

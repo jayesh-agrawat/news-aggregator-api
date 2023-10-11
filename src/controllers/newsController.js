@@ -1,22 +1,25 @@
 const axios = require("axios");
-
-var cache = require("../data/cache");
 const { configDotenv } = require("dotenv");
 
 const env = configDotenv().parsed;
+const apiURL = env.apiURL;
 const apiKey = env.NEWS_API_KEY;
+
 // Fetch news based on user preferences
 var fetchNews = async (req, res) => {
   try {
+    let user = req.user;
     let preferences = [];
-    // if (!!req.user.preferences.length) {
-    //   preferences = req.user.preferences;
-    // }
-    // Fetch news articles from an external API like NewsAPI
-    const apiUrl = `https://newsapi.org/v2/top-headlines?apiKey=${apiKey}&country=in&category=${preferences.join(
-      ","
-    )}`;
-    const response = await axios.get(apiUrl);
+    if (!!user.preferences.length) {
+      preferences = req.user.preferences;
+    }
+    const response = await axios.get(apiURL, {
+      params: {
+        apiKey,
+        category: preferences,
+        country: "in", // India
+      },
+    });
 
     res.status(200).json(response.data);
   } catch (err) {
