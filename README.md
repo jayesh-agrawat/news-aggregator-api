@@ -92,7 +92,7 @@ To get started with this project, follow the steps below:
 
 - **URL**: `/preferences`
 - **Method**: `PUT`
-- **Headers**: `Authorization: Bearer your_jwt_token`
+- **Headers**: `Authorization: <jwt_token>`
 - **Request Body**: JSON
   ```json
   {
@@ -110,7 +110,7 @@ To get started with this project, follow the steps below:
 
 - **URL**: `/news`
 - **Method**: `GET`
-- **Headers**: `Authorization:  <jwt_token>`
+- **Headers**: `Authorization: <jwt_token>`
 - **Response**: JSON array of news articles.
 
 
