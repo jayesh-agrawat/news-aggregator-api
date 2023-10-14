@@ -14,7 +14,7 @@ app.post("/login", signin);
 app.use("/api/v1", routes);
 
 app.get("/", (req, res) => {
-  return res.status(200).send("Alive News Aggregator API v1");
+  return res.status(200).send("News Aggregator API v1");
 });
 app.listen(env.PORT, (err) => {
   console.log(`Server running on --> ${env.PORT}`);
