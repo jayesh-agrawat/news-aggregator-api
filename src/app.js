@@ -1,11 +1,12 @@
 const { configDotenv } = require("dotenv");
 const express = require("express");
 const routes = require("../src/routes");
+const db = require("./config/database");
 const { signin, signup } = require("./controllers/authController");
 const env = configDotenv().parsed;
 
 const app = express();
-
+db();
 app.use(express.json());
 
 app.post("/register", signup);
