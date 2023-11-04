@@ -20,3 +20,5 @@ app.get("/", (req, res) => {
 app.listen(env.PORT, (err) => {
   console.log(`Server running on --> ${env.PORT}`);
 });
+
+module.exports = app;

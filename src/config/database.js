@@ -1,8 +1,14 @@
 const mongoose = require("mongoose");
-
+let dbUrlProd = "mongodb://localhost:27017/newsdb";
+let dbUrlTest = "mongodb://localhost:27017/newsdbTest";
+dotenv = require("dotenv");
+dotenv.config();
 async function connectToDatabase() {
-  const uri = "mongodb://localhost:27017/newsdb";
-
+  if (process.env.ENV === "production") {
+    uri = dbUrlProd;
+  } else {
+    uri = dbUrlTest;
+  }
   try {
     await mongoose.connect(uri, {
       useNewUrlParser: true,
